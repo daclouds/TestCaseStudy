@@ -21,15 +21,22 @@
 import java.io.*;
 
 class TeamMake {
-	public static void main(String args[]) {
-		String composition = "";
-		String arr[] = new String[100];
-		int cnt = 0; /* 엔터기준 입력 횟수 */
-		int player = 0; /* 총 선수수 */
 
-		/*
-		 * 입력
-		 */
+	String arr[] = new String[100];
+	int player = 0; /* 총 선수수 */
+	
+	int aT[]; /* A팀 */
+	int bT[]; /* B팀 */
+	int info[][]; /* 선수별 입력정보 */
+	
+	/*
+	 * 입력
+	 */
+	protected void stdin() {
+		
+		String composition = "";
+		int cnt = 0; /* 엔터기준 입력 횟수 */
+		
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					System.in));
@@ -56,13 +63,20 @@ class TeamMake {
 			System.err.println("프로그램을 다시 실행해 주세요.");
 			System.exit(0);
 		}
-
+		
+		initTeam(player);
+	}
+	
+	protected void initTeam(int numberOfPlayers) {
+		aT = new int[numberOfPlayers];
+		bT = new int[numberOfPlayers];
+		info = new int[numberOfPlayers][];
+	}
+	
+	protected void calc() {
 		/*
 		 * 계산
 		 */
-		int aT[] = new int[player]; /* A팀 */
-		int bT[] = new int[player]; /* B팀 */
-		int info[][] = new int[player][]; /* 선수별 입력정보 */
 		int tmp = 0;
 
 		for (int i = 0; i < player; i++) {
@@ -78,6 +92,30 @@ class TeamMake {
 			}
 			tmp = 0;
 		}
+	}
+	
+	protected void printResult() {
+		/*
+		 * 결과 출력
+		 */
+		System.out.print("A팀 ==> ");
+
+		for (int k = 0; k < aT.length; k++) {
+			if (aT[k] > 0) {
+				System.out.print(" " + aT[k] + " ");
+			}
+		}
+
+		System.out.print(" B팀 ==> ");
+
+		for (int k = 0; k < bT.length; k++) {
+			if (bT[k] > 0) {
+				System.out.println(" " + bT[k] + " ");
+			}
+		}
+	}
+	
+	public void concreate() {
 
 		int number = 1; /* 선수번호 */
 
@@ -118,23 +156,10 @@ class TeamMake {
 			number++;
 		}
 
-		/*
-		 * 결과 출력
-		 */
-		System.out.print("A팀 ==> ");
-
-		for (int k = 0; k < aT.length; k++) {
-			if (aT[k] > 0) {
-				System.out.print(" " + aT[k] + " ");
-			}
-		}
-
-		System.out.print(" B팀 ==> ");
-
-		for (int k = 0; k < bT.length; k++) {
-			if (bT[k] > 0) {
-				System.out.println(" " + bT[k] + " ");
-			}
-		}
+	}
+	
+	public static void main(String args[]) {
+		TeamMake clazz = new TeamMake();
+		clazz.concreate();
 	}
 }
