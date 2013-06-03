@@ -18,7 +18,11 @@
  * A팀 : 1,5
  * B팀 : 2
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 class TeamMake {
 
@@ -65,6 +69,21 @@ class TeamMake {
 		}
 		
 		initTeam(player);
+	}
+	
+	protected void fileIn(String filename) throws FileNotFoundException {
+		int cnt = 0;
+		Scanner s = new Scanner(new File(filename));
+		int numberOfPlayers = Integer.parseInt(s.nextLine());
+		while (s.hasNext()) {
+			arr[cnt] = s.nextLine();
+			cnt++;
+		}
+		initTeam(numberOfPlayers);
+	}
+	
+	protected String[] getArray() {
+		return arr;
 	}
 	
 	protected void initTeam(int numberOfPlayers) {
