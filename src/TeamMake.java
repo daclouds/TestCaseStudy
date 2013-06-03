@@ -121,6 +121,10 @@ class TeamMake {
 		return aT;
 	}
 	
+	protected int[] getBTeam() {
+		return bT;
+	}
+	
 	protected void printResult() {
 		/*
 		 * 결과 출력
@@ -142,7 +146,7 @@ class TeamMake {
 		}
 	}
 	
-	public void cherryPick() {
+	protected void buildATeam() {
 		int number = 1; /* 선수번호 */
 
 		/*
@@ -163,7 +167,10 @@ class TeamMake {
 			number++;
 		}
 
-		number = 1; /* 선수번호 초기화 */
+	}
+	
+	public void buildBTeam() {
+		int number = 1; /* 선수번호 초기화 */
 
 		/*
 		 * B팀구성
@@ -187,7 +194,8 @@ class TeamMake {
 	public void run() throws FileNotFoundException {
 		fileIn("./input.txt");
 		buildDislikeMatrix();
-		cherryPick();
+		buildATeam();
+		buildBTeam();
 		printResult();
 	}
 	
