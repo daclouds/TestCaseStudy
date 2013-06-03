@@ -86,7 +86,7 @@ class TeamMake {
 		return arr;
 	}
 	
-	protected void initTeam(int numberOfPlayers) {
+	private void initTeam(int numberOfPlayers) {
 		aT = new int[numberOfPlayers];
 		bT = new int[numberOfPlayers];
 		info = new int[numberOfPlayers][];
@@ -134,8 +134,7 @@ class TeamMake {
 		}
 	}
 	
-	public void concreate() {
-
+	public void cherryPick() {
 		int number = 1; /* 선수번호 */
 
 		/*
@@ -174,11 +173,18 @@ class TeamMake {
 
 			number++;
 		}
-
 	}
 	
-	public static void main(String args[]) {
+	
+	public void run() throws FileNotFoundException {
+		fileIn("./input.txt");
+		calc();
+		cherryPick();
+		printResult();
+	}
+	
+	public static void main(String args[]) throws FileNotFoundException {
 		TeamMake clazz = new TeamMake();
-		clazz.concreate();
+		clazz.run();
 	}
 }
