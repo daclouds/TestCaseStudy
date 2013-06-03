@@ -1,5 +1,5 @@
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.FileNotFoundException;
 
@@ -42,9 +42,16 @@ public class TeamMakeTest {
 		
 //		then
 		int[] a = sut.getATeam();
-		for (int member : a) {
-			System.out.println(member);
-		}
+		
+		assertEquals(1, a[0]);
+		assertEquals(2, a[1]);
+		assertEquals(3, a[2]);
+		assertEquals(4, a[3]);
+		assertEquals(5, a[4]);
+		
+//		for (int member : a) {
+//			System.out.println(member);
+//		}
 	}
 	
 	@Test
@@ -58,14 +65,21 @@ public class TeamMakeTest {
 		
 //		then
 		int[][] info = sut.getDislikeMatrix();
-		for (int[] member : info) {
-			if (member != null) {
-				for (int hater : member) {
-					System.out.print(hater + " ");
-				}
-			}
-			System.out.println();
-		}
+		
+		assertArrayEquals(new int[] {1, 2, 0, 0, 0}, info[0]);
+		assertArrayEquals(new int[] {1, 3, 0, 0, 0}, info[1]);
+		assertArrayEquals(new int[] {0, 0, 0, 0, 0}, info[2]);
+		assertArrayEquals(new int[] {2, 2, 3, 0, 0}, info[3]);
+		assertArrayEquals(new int[] {1, 4, 0, 0, 0}, info[4]);
+		
+//		for (int[] member : info) {
+//			if (member != null) {
+//				for (int hater : member) {
+//					System.out.print(hater + " ");
+//				}
+//			}
+//			System.out.println();
+//		}
 	}
 
 }
