@@ -74,12 +74,12 @@ class TeamMake {
 	protected void fileIn(String filename) throws FileNotFoundException {
 		int cnt = 0;
 		Scanner s = new Scanner(new File(filename));
-		int numberOfPlayers = Integer.parseInt(s.nextLine());
+		player = Integer.parseInt(s.nextLine());
 		while (s.hasNext()) {
 			arr[cnt] = s.nextLine();
 			cnt++;
 		}
-		initTeam(numberOfPlayers);
+		initTeam(player);
 	}
 	
 	protected String[] getArray() {
@@ -92,7 +92,7 @@ class TeamMake {
 		info = new int[numberOfPlayers][];
 	}
 	
-	protected void calc() {
+	protected void buildDislikeMatrix() {
 		/*
 		 * 계산
 		 */
@@ -111,6 +111,14 @@ class TeamMake {
 			}
 			tmp = 0;
 		}
+	}
+	
+	protected int[][] getDislikeMatrix() {
+		return info;
+	}
+	
+	protected int[] getATeam() {
+		return aT;
 	}
 	
 	protected void printResult() {
@@ -178,7 +186,7 @@ class TeamMake {
 	
 	public void run() throws FileNotFoundException {
 		fileIn("./input.txt");
-		calc();
+		buildDislikeMatrix();
 		cherryPick();
 		printResult();
 	}
